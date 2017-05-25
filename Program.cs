@@ -36,7 +36,7 @@ namespace Sassafras
                 }
             }
 
-            Console.WriteLine("Successfully connected.\n");
+            Console.WriteLine("Successfully connected, please allow a few seconds until aliases take affect.\nFeel free to minimize this window.");
             InitMessageHandler(client);
 
             // Block this task until the program is closed.
