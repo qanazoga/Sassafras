@@ -16,9 +16,45 @@ namespace Sassafras
         // Connects the User/Client/Bot amalgamation to Discord.
         public async Task ConnectBot()
         {
-            CreateAliasFile();
+            GetAliasFile();
 
+            var path = Directory.GetCurrentDirectory();
             var client = new DiscordClient();
+            if (File.Exists(path + "\\token.txt")) //Check to see if the client has a login token.
+            {
+                await TokenLogin(client);
+            } else
+            {
+                await EMailLogin(client);
+            }
+            
+            Console.WriteLine("Successfully connected as "+client.CurrentUser.Name+", please allow a few seconds until aliases take affect.\nFeel free to minimize this window.");
+            InitMessageHandler(client);
+
+            // Block this task until the program is closed.
+            await Task.Delay(-1);
+        }
+
+        // Logs the client in with a token
+        async Task TokenLogin(DiscordClient client)
+        {
+            Console.WriteLine("Token file found.\n");
+            var token = System.IO.File.ReadAllText(Directory.GetCurrentDirectory() + "\\token.txt");
+            try
+            {
+                await client.Connect(token, TokenType.User);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("(This probably means your token is bad! Check your token file and restart, or log in manually.)\n\n");
+                await EMailLogin(client);
+            }
+        }
+
+        // Logs the client in with user credentials
+        async Task EMailLogin(DiscordClient client)
+        {           
             String[] creds = getCreds();
 
             while (true)
@@ -35,16 +71,10 @@ namespace Sassafras
                     creds = getCreds();
                 }
             }
-
-            Console.WriteLine("Successfully connected, please allow a few seconds until aliases take affect.\nFeel free to minimize this window.");
-            InitMessageHandler(client);
-
-            // Block this task until the program is closed.
-            await Task.Delay(-1);
         }
 
 
-        // Returns the users Email and password, so we can log in.    
+        // Returns the users credentials, so we can log in.    
         public String[] getCreds()
         {
             String[] creds = { "", "" };
@@ -93,7 +123,7 @@ namespace Sassafras
         }
 
 
-        // Turns on our message handler
+        // Initializes our message handler
         public static void InitMessageHandler(DiscordClient bot)
         {
             bot.MessageReceived += (s, e) =>
@@ -107,7 +137,7 @@ namespace Sassafras
                         aliases = JsonConvert.DeserializeObject<Dictionary<String, String>>(File.ReadAllText(path));
                     } catch
                     {
-                        Console.WriteLine("[Error] The alias file is innaccessable!");
+                        Console.WriteLine("[Error] The alias file can't be read correctly!\nPlease double-check your .json syntax.");
                     }
                     
                     foreach (KeyValuePair<String,String> kv in aliases)
@@ -129,7 +159,7 @@ namespace Sassafras
          * If they do, it will attempt to make one.
          * If it fails, or if they don't want to, the program will close, as it can not run without the alias file.
          */
-        public void CreateAliasFile()
+        public void GetAliasFile()
         {
             String path = Directory.GetCurrentDirectory();
 
@@ -149,6 +179,7 @@ namespace Sassafras
                         Console.WriteLine("The alias file has been created:\n" + path + "\\alias.json"); 
                     } catch (Exception e)
                     {
+                        Console.WriteLine(e.Message);
                         Console.WriteLine(
                             "Uh oh, something bad happened while attempting to make the alias file.\n" +
                             "This can happen for many reasons, such as your account on the computer not having enough permissions,\n" +
@@ -159,7 +190,7 @@ namespace Sassafras
                         Environment.Exit(0);
                     }
                     
-                    CreateAliasFile();
+                    GetAliasFile();
                 } else
                 {
                     Console.WriteLine(
@@ -170,10 +201,6 @@ namespace Sassafras
                     Environment.Exit(0);
                 }
             }
-
         }
-
-
-
     }
 }
