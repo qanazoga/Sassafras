@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>paige's website</title>
+  <!--Bootstrap 5 (leave as 1st stylesheet)-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <!--Font Awesome-->
+  <script src="https://kit.fontawesome.com/b8ef133f52.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/colors.css">
+
+  <style>
+    .row {
+      align-items: center;
+    }
+  </style>
+</head>
+<!--                                                                                                 
+ ,adPPYb,d8  ,adPPYYba,  8b,dPPYba,   ,adPPYYba,  888888888   ,adPPYba,    ,adPPYb,d8  ,adPPYYba,  
+a8"    `Y88  ""     `Y8  88P'   `"8a  ""     `Y8       a8P"  a8"     "8a  a8"    `Y88  ""     `Y8  
+8b       88  ,adPPPPP88  88       88  ,adPPPPP88    ,d8P'    8b       d8  8b       88  ,adPPPPP88  
+"8a    ,d88  88,    ,88  88       88  88,    ,88  ,d8"       "8a,   ,a8"  "8a,   ,d88  88,    ,88  
+ `"YbbdP'88  `"8bbdP"Y8  88       88  `"8bbdP"Y8  888888888   `"YbbdP"'    `"YbbdP"Y8  `"8bbdP"Y8  
+         88                                                                aa,    ,88              
+         88                                                                 "Y8bbdP"               
+
+         heroes don't need pants
+-->
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Home</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsableButtons"
+        aria-controls="collapsableButtons" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsableButtons">
+        <div class="navbar-nav">
+          <a class="nav-link" href="https://github.com/qanazoga"><i class="fab fa-github"></i> GitHub</a>
+          <a class="nav-link" href="https://twitter.com/qanazoga"><i class="fab fa-twitter"></i> Twitter</a>
+          <a class="nav-link" href="mailto:qanazoga@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="alert alert-danger" role="alert">
+    <strong>Please Note:</strong> Due to gateway changes, this program <strong>no longer works</strong>
+    and due to Discord's <a
+      href="https://support.discordapp.com/hc/en-us/articles/115002192352-Automated-user-accounts-self-bots-">
+      new view on selfbots</a> <strong>will not be updated</strong> unless these rules change. Thank you for your
+    understanding.
+  </div>
+
+  <!-- end navbar stuff -->
+
+  <div class="container text-center">
+
+    <div class="row">
+      <div class="col-sm" style="font-family: 'Courier New', Courier, monospace; color: var(--qanazoga-orange)">
+        <h1>Sassafras</h1>
+        <p>Simple aliases for Discord</p>
+      </div>
+
+      <div class="col-sm">
+        <img src="https://raw.githubusercontent.com/qanazoga/Sassafras/master/sassafras_icon_0gl_icon.ico"
+          class="img-responsive center-block">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h3>How does it work?</h3>
+        <div class="row">
+          <div class="col-med">
+            <video width="100%" controls>
+              <source src="/files/sassafras-example.webm" type="video/webm">
+              This video is unavailable
+            </video>
+          </div>
+          <div class="col-med">
+            <p>Once you begin hosting Sassafras, typing an allias anywhere in a message will have it replaced by the
+              translation phrase.</p>
+            <p>This will happen no matter where you do it, other computers, desktops, laptops, even on mobile!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>How to use the Alias File</h3>
+      <p>The alias file is simple json, so it's easy for anyone to edit and understand with ease.</p>
+      <div style="margin: 0 1em">
+        <pre 
+        style="text-align: left; font-size: medium; color:white; background-color: black; 
+        margin: 0 auto; padding: 1rem; max-width: min-content;">
+{
+  ";;ping": "pong",
+  ";;rules": "1). don't talk about fight club, 2). DON'T talk about fight club",
+  ";;parallax": "Parallax is a displacement or difference in the apparent position of..."
+}       </pre>
+      </div>
+      <p>
+        Everything has to be quoted, and a comma goes after every line <i>except</i> the last one.
+        If you only have one line, you will have no commas.
+      </p>
+    </div>
+
+    <div class="download">
+      <a class="btn btn-default btn-lg" href="https://github.com/qanazoga/Sassafras/releases/latest">Download Now</a>
+      <a class="btn btn-default btn-lg" href="https://github.com/qanazoga/Sassafras">View Source Code</a>
+    </div>
+    <br>
+  </div>
+
+  <!--Bootstrap 5 (keep at end of body).-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
